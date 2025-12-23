@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './Components/NavBar'
-import ParticlesBackground from './Components/ParticlesBackground'
+// import ParticlesBackground from './Components/ParticlesBackground'
 import CustomCursor from './Components/CustomCursor'
 import Home from './Section/Home'
 import About from './Section/About'
@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div className='relative gradient text-white '>
       <CustomCursor/>
-      <ParticlesBackground/>
+      {/* <ParticlesBackground/> */}
       <NavBar/>
       <Home/>
       <About/>

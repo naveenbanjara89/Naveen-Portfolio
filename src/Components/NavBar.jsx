@@ -1,16 +1,73 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from "../assets/logo.png"
 import { FiMenu } from "react-icons/fi";
 import OverlayMenu from './OverlayMenu'
+import { useRef } from 'react';
 
 const NavBar = () => {
 
   const [menuOpen, setMenuOpen] = useState(false)
   const [visible, setVisible] = useState(true)
+  const [forceVisible, setForceVisible] = useState(false)
+
+  const lastScrollY=useRef(0);
+  const timerId=useRef(null)
+
+  useEffect(() => {
+    const homeSection=document.querySelector("#home")
+    const observer =new IntersectionObserver(
+      ([entry])=>{
+      if(entry.isIntersecting){
+        setForceVisible(true)
+        setVisible(true)
+      }else{
+        setForceVisible(false)
+      }
+      },{threshold:0.1 }
+    )
+    if(homeSection) observer.observe(homeSection);
+    return ()=>{
+      if(homeSection) observer.unobserve(homeSection)
+    }
+    
+  }, [])
+  
+
+  useEffect(() => {
+    const handeScroll=()=>{
+      if(forceVisible){
+        setForceVisible(true)
+        return
+      }
+    
+    const currentscrollY= window.scrollY
+    if(currentscrollY>lastScrollY.current){
+      setVisible(false)
+    }  else{
+      setVisible(false)
+    if(timerId.current) clearTimeout(timerId.current);
+    
+    timerId.current=setTimeout(()=>{
+      setVisible(false)
+    },3000)
+    }
+    lastScrollY.current=currentscrollY;
+
+    }
+    window.addEventListener("scroll",handeScroll,{passive:true})
+
+    return()=>{
+      window.removeEventListener("scroll",handeScroll)
+      if(timerId.current) clearTimeout(timerId.current)
+    }
+
+  }, [forceVisible])
+  
+
+
 
   return (
     <>
-`
     <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-6 py-4 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full" } `}>
       <div className='flex items-center space-x-1 '>
         <img  src={Logo} alt="logo" className='w-8 h-8 cursor-pointer ' />
