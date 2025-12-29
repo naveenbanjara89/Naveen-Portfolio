@@ -81,14 +81,14 @@ const Home = () => {
             initial={{opacity:0,}}
             animate={{opacity:1,}}
             transition={{duration:0.8,delay:0.8}} >
-              <a href='projects' className='px-6 py-3 font-medium text-lg bg-gradient-to-r  from-[#302b63] via-[#00bf8f] to-[#1cd8d2] rounded-full shadow-lg hover:scale-105 transition-all  '>View My Work </a>
+              <a href='#projects' className='px-6 py-3 font-medium text-lg bg-gradient-to-r  from-[#302b63] via-[#00bf8f] to-[#1cd8d2] rounded-full shadow-lg hover:scale-105 transition-all  '>View My Work </a>
               <a id='resume' href='/NaveenBanjaraResume.pdf' download className='px-6 py-3 rounded-full text-lg font-medium bg-white text-black hover:bg-gray-200 shadow-lg hover:scale-105 transition-all  '>My Resume </a>
               
             </motion.div>
           </div>
           <div className='mt-10 flex gap-5 md:text-3xl justify-center lg:justify-start gap-6 '>
               {socials.map(({Icon,label,href})=>(
-                <motion.a className=' text-gray-300 hover:scale-105' 
+                <motion.a className=' text-gray-300 cursor-pointer hover:scale-105' 
                   href={href}
                   key={label}
                   target='_blank'
