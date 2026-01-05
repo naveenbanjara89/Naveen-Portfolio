@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaGitAlt, FaGithub, FaJava, FaLinkedinIn, FaNodeJs, FaReact } from "react-icons/fa";  
+import { FaGithub, FaJava, FaFigma, FaLinkedinIn, FaNodeJs, FaReact } from "react-icons/fa";  
 import { RiTailwindCssFill } from 'react-icons/ri';
-import { SiFastapi, SiMongodb, SiPostman } from 'react-icons/si';
+import { SiMongodb, SiPostman } from 'react-icons/si';
 import { TbBrandCpp } from 'react-icons/tb';
 import {motion, useMotionValue} from 'framer-motion'
 
@@ -12,13 +12,13 @@ const Skills = () => {
     {icon:<FaReact />,name:"React"},
     {icon:<TbBrandCpp />,name:"C++"},
     {icon:<FaGithub />,name:"GitHub"},
-    {icon:<SiFastapi />,name:"FastAPI"},
+    {icon:<FaFigma/>,name:"Figma"},
     {icon:<FaNodeJs />,name:"Node.js"},
     {icon:<SiMongodb />,name:"MongoDB"},
     {icon:<SiPostman />,name:"Postman"},
     {icon:<RiTailwindCssFill />,name:"Tailwind CSS"},
     {icon:<FaLinkedinIn />,name:"LinkedIN"},
-    {icon:<FaGitAlt />,name:"Git"},
+    // {icon:<FaGitAlt />,name:"Git"},
   ];
 
   const repeated=[...skills,...skills]
@@ -47,13 +47,13 @@ const Skills = () => {
   useEffect(() => {
     if(!active) return;
 
-    const onWheel=(e) =>setDir(e.delay> 0 ? -1 : 1)
-    const onTouchstart=(e)=>(touchY.current=e.touches[0].clietY)
+    const onWheel=(e) =>setDir(e.deltaY> 0 ? 1 : -1)
+    const onTouchstart=(e)=>(touchY.current=e.touches[0].clientY)
     const onTouchmove=(e)=>{
       if(touchY.current==null) return;
-      const delta=e.touches[0].clietY-touchY.current;
+      const delta=e.touches[0].clientY-touchY.current;
       setDir(delta>0 ? 1 :-1 )
-      touchY.current=e.touches[0].clietY
+      touchY.current=e.touches[0].clientY
     }
     window.addEventListener('wheel',onWheel,{passive:true})
     window.addEventListener('touchstart',onTouchstart,{passive:true})
