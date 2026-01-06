@@ -69,7 +69,7 @@ const NavBar = () => {
   return (
     <>
     <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-6 py-4 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full" } `}>
-      <div className='flex items-center space-x-1 '>
+      <div onClick={() => (window.location.href = "/")} className='flex items-center space-x-1 '>
         <img  src={Logo} alt="logo" className='w-8 h-8 cursor-pointer ' />
         <div  className='text-2xl font-bold text-white cursor-pointer hidden sm:block '>
           Naveen  

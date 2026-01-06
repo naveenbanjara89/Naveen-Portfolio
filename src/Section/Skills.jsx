@@ -1,24 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { FaGithub, FaJava, FaFigma, FaLinkedinIn, FaNodeJs, FaReact } from "react-icons/fa";  
+import { FaGithub, FaJava, FaFigma, FaLinkedinIn, FaNodeJs, FaReact, FaHtml5, FaCss3 } from "react-icons/fa";  
 import { RiTailwindCssFill } from 'react-icons/ri';
-import { SiMongodb, SiPostman } from 'react-icons/si';
-import { TbBrandCpp } from 'react-icons/tb';
+import { SiMongodb, SiPostman, SiVite } from 'react-icons/si';
+import { BiLogoVisualStudio } from "react-icons/bi";
+import { TbBrandCpp, TbBrandJavascript } from 'react-icons/tb';
 import {motion, useMotionValue} from 'framer-motion'
+import { DiFirebase } from 'react-icons/di';
 
 const Skills = () => {
 
   const skills=[
     {icon:<FaJava />,name:"Java"},
-    {icon:<FaReact />,name:"React"},
     {icon:<TbBrandCpp />,name:"C++"},
-    {icon:<FaGithub />,name:"GitHub"},
-    {icon:<FaFigma/>,name:"Figma"},
+    {icon:<FaHtml5 />,name:"HTML"},
+    {icon:<FaCss3 />,name:"CSS"},
+    {icon:<TbBrandJavascript />,name:"JavaScript"},
     {icon:<FaNodeJs />,name:"Node.js"},
+    {icon:<FaReact />,name:"React"},
+    {icon:<RiTailwindCssFill />,name:"Tailwind CSS"},
     {icon:<SiMongodb />,name:"MongoDB"},
     {icon:<SiPostman />,name:"Postman"},
-    {icon:<RiTailwindCssFill />,name:"Tailwind CSS"},
+    {icon:<SiVite />,name:"Vite"},
     {icon:<FaLinkedinIn />,name:"LinkedIN"},
-    // {icon:<FaGitAlt />,name:"Git"},
+    {icon:<FaGithub />,name:"GitHub"},
+    {icon:<FaFigma/>,name:"Figma"},
+    {icon:<DiFirebase />,name:"FireBase"},
+    {icon:<BiLogoVisualStudio/> ,name:"Visual Studio"},
   ];
 
   const repeated=[...skills,...skills]

@@ -37,19 +37,19 @@ const Projects = () => {
     {
       title:"VEXIVA",
       link:"https://vexiva.netlify.app",
-      bgColor:"#0d4d3d",
+      bgColor:"#729990",
       image:isMobile ? photo1 : img1
     },
     {
       title:"Real-Estate",
       link:"https://reals-estate.netlify.app/",
-      bgColor:"#3884d3",
+      bgColor:"#406285",
       image:isMobile ? photo2 : img2
     },
     {
       title:"Snake-Game",
       link:"https://nakes-game.netlify.app/",
-      bgColor:"#dc9317",
+      bgColor:"#554120",
       image:isMobile ? photo3 : img3
     },
   ],
@@ -65,7 +65,7 @@ const [activeIndex, setActiveIndex] = useState(0)
 
 useMotionValueEvent(scrollYProgress,"change",(v)=>{
   const idx=thresholds.findIndex((t)=> v<=t );
-  setActiveIndex(idx === -1 ? thresholds.length-1 :idx )
+  setActiveIndex(idx === -1 ? thresholds.length-1 : idx )
 })
 
 const activeProject=projects[activeIndex];
@@ -82,7 +82,7 @@ const activeProject=projects[activeIndex];
     >
       <div className='sticky top-0 h-screen flex flex-col items-center justify-center'>
         <h2 className={`text-3xl font-semibold z-10 text-center 
-          ${isMobile ? "mt-4":"mt-8" } `}>My Work</h2>
+          ${isMobile ? "mt-4":"mt-5" } `}>My Work</h2>
           <div className={`relative w-full flex-1 flex items-center justify-center ${
             isMobile ? "-mt-4":""
           } `}>
@@ -101,7 +101,7 @@ const activeProject=projects[activeIndex];
                       animate={{opacity:1 ,y:0}}
                       exit={{opacity:0 ,y:30}}
                       transition={{duration:0.5 , ease:"easeOut"}}
-                      className={`block text-center -mt-6 sm:-mt-8 text-[clamp(2rem,6vw,5rem)] text-white/95 sm:absolutesm:top-20 sm:left-[35%] lg:left-[-5%] sm:mb-0 italic font-semibold ${
+                      className={`block text-center -top-12 -mt-6 sm:-mt-8 text-[clamp(2rem,6vw,5rem)] text-white sm:absolute sm:left-[45%] lg:left-[-5%] sm:mb-0 italic font-semibold tracking-wide ${
                         isMobile ? "-mt-24 " :""
                       } `}
                       style={{
@@ -120,7 +120,7 @@ const activeProject=projects[activeIndex];
                   md:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.7) ] ${
                     isMobile ? "mb-6 rounded-lg":"mb-10 sm:mb-12 rounded-xl"
                   } 
-                  h-[62vh] sm:h-[65vh]`}
+                  h-[65vh] sm:h-[70vh]`}
                   style={{
                     zIndex:10,
                     transition:"box-shadow 250ms ease "
@@ -150,18 +150,17 @@ const activeProject=projects[activeIndex];
             ))}
           </div>
 
-          <div className={`absolute ${
-            isMobile ? "bottom-20":"bottom-0"
+          <div className={`absolute z-20  ${
+            isMobile ? "bottom-16":"bottom-15"
           }`}>
             <a href={activeProject ?.link} target='_blank' 
             rel='noopener noreferrer'
-            className='cursor-pointer inline-block font-semibold mt-10 border px-6 py-3 rounded-lg text-black bg-white hover:bg-gray-200 transition-all'
+            className='cursor-pointer inline-block font-semibold mt-5 border px-6 py-3 rounded-lg text-black bg-[#295462] hover:bg-gray-400 hover:scale-105 transition-all'
             aria-label={`View ${activeProject?.title}`}
             >
               View Project
             </a>
           </div>
-
       </div>
     </section>
   )
