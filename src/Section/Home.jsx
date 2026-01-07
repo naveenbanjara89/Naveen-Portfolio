@@ -86,9 +86,9 @@ const Home = () => {
             </motion.div>
           </div>
           <div className='mt-10 flex gap-5 md:text-3xl justify-center lg:justify-start gap-6 '>
-              {socials.map(({Icon,label,href})=>(
+              {socials.map(({Icon,label,link})=>(
                 <motion.a className=' text-gray-300 cursor-pointer hover:scale-105' 
-                  href={href}
+                  href={link}
                   key={label}
                   target='_blank'
                   aria-label={label}
