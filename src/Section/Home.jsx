@@ -3,7 +3,6 @@ import { motion, scale, spring} from "framer-motion"
 import ParticlesBackground from "../Components/ParticlesBackground"
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import avatar from '../assets/avatar.png'
-import { filter } from 'framer-motion/client'
 
 const socials=[
   {Icon:FaLinkedin,label:'LinkedIn',link:'https://www.linkedin.com/in/naveen-banjara-88734924b/'},

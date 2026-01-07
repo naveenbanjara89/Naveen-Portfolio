@@ -1,10 +1,9 @@
 import { AnimatePresence,motion } from 'framer-motion'
-import { div } from 'framer-motion/client'
 import React, { useEffect, useMemo, useState } from 'react'
 
 const IntroAnimation = ({onFinish}) => {
   const greetings=useMemo(()=>[
-    "Hello","नमस्ते","Hola","Bonjour","Ciao","Olá","مرحبا","こんにちは","Hej","Hallo","Salam","안녕하세요","Привет","שלום"
+    "Hello","नमस्ते","Hola","Salam","Bonjour","Ciao","Olá","مرحبا","こんにちは","안녕하세요","Привет","שלום"
   ],[])
 
   const [index,setIndex]=React.useState(0)

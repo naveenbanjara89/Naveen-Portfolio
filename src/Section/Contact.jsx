@@ -22,10 +22,10 @@ const Contact = () => {
 
   const handleChange=(e)=>{
     const {name , value} = e.target
-    if(name==="budget" && value < 0 && !/^\d+$/.test(value)) return;
+    if(name==="budget" && (value < 0 || !/^\d*$/.test(value))) return;
     setFormData((p)=>({...p, [name]:value}))
     if(errors[name]){
-      setErrors(({...p,[name]:"" }))
+      setErrors(p=>({...p,[name]:"" }))
     }
   }
 
@@ -33,7 +33,7 @@ const Contact = () => {
     const required = ["name","email","service","idea"];
     const newErrors={};
     required.forEach((f)=>!formData[f].trim() && (newErrors[f]="Fill the details in this feild"))
-    if(formData.service !=="other" && !formData.budget.trim()){
+    if(formData.service !=="others" && !formData.budget.trim()){
       newErrors.budget="Fill this feild";
     }
     setErrors(newErrors)
@@ -98,8 +98,78 @@ const Contact = () => {
             value={formData.name} onChange={handleChange}
             className={`p-3 rounded-md bg-white/10 border ${errors.name ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-blue-500 `}
             />
-            {errors.name && <p className="text-red-500 text-xs "></p> }
+            {errors.name && <p className="text-red-500 text-xs ">{errors.name}</p> }
           </div>
+          <div className='flex flex-col'>
+            <label className='mb-1'>Your Email<span className='text-red-500'> * </span></label>
+            <input type="text" name='email' placeholder='Your Email'
+            value={formData.email} onChange={handleChange}
+            className={`p-3 rounded-md bg-white/10 border ${errors.email ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-blue-500 `}
+            />
+            {errors.email && <p className="text-red-500 text-xs ">{errors.email}</p> }
+          </div>
+          <div className='flex flex-col'>
+            <label className='mb-1'>Service Needed<span className='text-red-500'> * </span></label>
+            <select name="service"
+            value={formData.service} 
+            onChange={handleChange}
+            className={`p-3 rounded-md bg-white/10 border ${errors.service ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-blue-500 `}
+            >
+              <option className='text-black ' value="" disabled >
+                Something in mind
+              </option>
+              <option className='text-black ' value="Frontend Development" >
+                Frontend Developent
+              </option>
+              <option className='text-black ' value="Backend Development" >
+                Backend Development
+              </option>
+              <option className='text-black ' value="Full Stack Web Development" >
+                Full Stack Web Development
+              </option>
+              <option className='text-black ' value="others">Others</option>
+            </select>
+            {errors.service && <p className="text-red-500 text-xs ">{errors.service}</p> }
+          </div>
+
+          {formData.service && formData.service !== "others" && (
+            <div className='flex flex-col'>
+              <label className='mb-1'>Budget<span className='text-red-500'> * </span></label>
+              <input type="text" name='budget' placeholder='Your Budget'
+              value={formData.budget} onChange={handleChange}
+              className={`p-3 rounded-md bg-white/10 border ${errors.budget ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-blue-500 `}
+            />
+            {errors.budget && <p className="text-red-500 text-xs ">{errors.budget}</p> }
+            </div>
+          )}
+
+          <div className='flex flex-col'>
+            <label className='mb-1'>Explain Your Idea<span className='text-red-500'> * </span></label>
+            <textarea 
+            name='idea' 
+            rows={5} 
+            placeholder='Enter your Idea'
+            value={formData.idea} 
+            onChange={handleChange}
+            className={`p-3 rounded-md bg-white/10 border ${errors.idea ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-blue-500 `}
+            />
+            {errors.idea && <p className="text-red-500 text-xs">{errors.idea}</p>}
+          </div>
+          {status &&  (
+            <p className={`text-sm ${status==="success" ? "text-green-500" : status === "error" ? "text-red-500" : "text-yellow-400" }`}>
+              {status === "sending" ? "sending..." : status === "success" ? "Message send Successfully ✅" : "Something went wrong ❌" }
+            </p>
+          )}
+
+          <motion.button className='bg-blue-600 cursor-pointer hover:bg-blue-700 disabled:opacity-60 text-white py-3 rounded-md font-semibold transition' 
+          whileHover={{scale:1.05}}
+          whileTap={{scale:0.95}}
+          disabled={status=== "sending"}
+          type='submit'
+          >
+            {status ==="sending" ? "sending..." : "Send Message" }
+          </motion.button>
+
         </form>
 
       </motion.div>

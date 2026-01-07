@@ -31,7 +31,6 @@ const OverlayMenu = ({isOpen,onClose}) => {
                 "Skills",
                 "Projects",
                 "Exprience",
-                "Testimonials",
                 "Contact"
               ].map((item,index)=>(
                 <motion.li key={item} initial={{opacity:0 ,y:20}} animate={{opacity:1,y:0}} transition={{delay:0.3 + index*0.1}} >
