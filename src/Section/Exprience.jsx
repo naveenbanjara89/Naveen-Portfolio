@@ -14,12 +14,8 @@ const exprience =[
     duration:"July 2024 - October 2024",
     description:"Worked on React.js, Node.js, Firebase, and Phaser-based game development.Implemented user interfaces, API integration, and dynamic UI updates",
   },
-  {
-    role:"Bachelor of Technology",
-    company:"Rajasthan Technical University",
-    duration:"2021 - 2025",
-    description:"Arya Institute Of Engineering Technology, Computer Science Engineering",
-  },
+  
+  
 ];
 
 function ExprienceItem({exp , idx , start , end , scrollYProgress , layout}){
@@ -29,10 +25,24 @@ function ExprienceItem({exp , idx , start , end , scrollYProgress , layout}){
   const x = useTransform(scrollYProgress , [start , end] , [-24 , 0] )
 
   if(layout==="desktop"){
+    const isFirst = idx === 0
+    const isLast = idx === exprience.length - 1
+
     return(
-      <div className='relative flex justify-center items-center min-w-0'>
+      <div className='relative min-w-0 w-full flex justify-center items-center'>
         <motion.div className='z-10 w-7 h-7 rounded-full bg-white shadow-[0_0_0_8px_rgba(2555,255,255,0.1)] '
-        style={{scale,opacity}}
+        style={{scale,opacity,
+          left: isFirst
+            ? "40px"
+            : isLast
+            ? "calc(100% - 40px)"
+            : "50%",
+          transform: isFirst
+            ? "translateX(0)"
+            : isLast
+            ? "translateX(-100%)"
+            : "translateX(-50%)",
+        }}
         >
 
         </motion.div>
@@ -59,13 +69,20 @@ function ExprienceItem({exp , idx , start , end , scrollYProgress , layout}){
     )
   }
   return (
-    <div className='relative flex items-start'>
-      <motion.div className='absolute -left-[14px] top-3 z-10 w-7 h-7 rounded-full bg-white shadow-[0_0_0_8px_rgba(2555,255,255,0.1)] '
+    <div className='relative flex items-start gap-6 mb-10 mt-20 ' style={{ opacity }}>
+      <motion.div className='relative top-3 z-10 w-7 h-7 rounded-full bg-white shadow-[0_0_0_8px_rgba(2555,255,255,0.12)] '
       style={{scale,opacity}}
       >
 
       </motion.div>
-      <motion.article className='relative bg-black text-white border-gray-700/70 rounded-xl w-[90vw] p-5 max-w-sm ml-6 shadow-lg'
+      {/* <div className="relative flex justify-center w-6">
+      <motion.div
+        className="mt-3 z-10 w-7 h-7 rounded-full bg-white
+        shadow-[0_0_0_8px_rgba(255,255,255,0.12)]"
+        style={{ scale, opacity }}
+      />
+      </div> */}
+      <motion.article className=' bg-black text-white border border-gray-700/70 rounded-xl w-[90vw] p-5 max-w-sm ml-6 shadow-lg'
       style={{opacity , x}}
       transition={{duration:0.4 , delay:idx*0.15}}
       >
@@ -139,7 +156,7 @@ const lineSize = useTransform(scrollYProgress, (v)=>`${v*100}%`)
               </div>
             )}
 
-            {isMobile && (
+            {/* {isMobile && (
               <div className='relative w-full max-w-md'>
                 <div className='absolute left-0 top-0 bottom-0 w-[6px] h-[700px] bg-white/15 rounded '>
                   <motion.div className='absolute top-0 left-0  w-[6px] bg-white rounded'
@@ -159,7 +176,40 @@ const lineSize = useTransform(scrollYProgress, (v)=>`${v*100}%`)
                   ))}
                 </div>
               </div>
-            )}
+            )} */}
+            {isMobile && (
+              <div className="relative w-full max-w-md">
+
+                {/* ✅ MOBILE TIMELINE WRAPPER */}
+                <div className="relative pl-6">
+
+                  {/* VERTICAL LINE – auto fits between first & last dot */}
+                  <div className="absolute left-[14px] top-[36px] bottom-[36px] w-[6px] bg-white/30">
+                    <motion.div
+                      className="absolute top-0 left-0 w-full bg-white rounded"
+                      style={{ height: lineSize }}
+                    />
+                  </div>
+
+                  {/* ITEMS */}
+                  <div className="relative flex flex-col gap-10 mt-6 pb-28">
+                    {exprience.map((exp, idx) => (
+                      <ExprienceItem
+                        key={idx}
+                        exp={exp}
+                        idx={idx}
+                        start={idx === 0 ? 0 : thresholds[idx - 1]}
+                        end={thresholds[idx]}
+                        scrollYProgress={scrollYProgress}
+                        layout="mobile"
+                      />
+                    ))}
+                  </div>
+
+                </div>
+              </div>
+)}
+
 
           </div>
         </div>

@@ -9,8 +9,8 @@ const ParticlesBackground = () => {
         const ctx=canvas.getContext('2d')
 
         let particles=[]
-        const particleCount=50
-        const colors=["rgba(255,255,255,0.7)"]
+        const particleCount=40
+        const colors=["rgba(70, 70, 70, 0.3)"]
 
         class Particle{
             constructor(){
@@ -26,7 +26,7 @@ const ParticlesBackground = () => {
             draw(){
                 ctx.beginPath();
                 ctx.arc(this.x ,this.y,this.radius,0,Math.PI*2);
-                ctx.shadowBlur=10;
+                ctx.shadowBlur=2;
                 ctx.shadowColor=this.color
                 ctx.fillStyle=this.color;
                 ctx.fill();
