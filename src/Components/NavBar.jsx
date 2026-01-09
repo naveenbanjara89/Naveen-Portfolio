@@ -62,9 +62,6 @@ const NavBar = () => {
     }
 
   }, [forceVisible])
-  
-
-
 
   return (
     <>

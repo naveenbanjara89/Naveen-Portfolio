@@ -1,7 +1,7 @@
 import React from 'react'
 import {motion} from "framer-motion"
 import p from "../assets/hero1.png"
-import { label } from 'framer-motion/client'
+
 
 const About = () => {
 
