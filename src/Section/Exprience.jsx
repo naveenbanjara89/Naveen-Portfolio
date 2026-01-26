@@ -180,10 +180,10 @@ const lineSize = useTransform(scrollYProgress, (v)=>`${v*100}%`)
             {isMobile && (
               <div className="relative w-full max-w-md">
 
-                {/* ✅ MOBILE TIMELINE WRAPPER */}
+                
                 <div className="relative pl-6">
 
-                  {/* VERTICAL LINE – auto fits between first & last dot */}
+                  
                   <div className="absolute left-[14px] top-[36px] bottom-[36px] w-[6px] bg-white/30">
                     <motion.div
                       className="absolute top-0 left-0 w-full bg-white rounded"
@@ -191,7 +191,7 @@ const lineSize = useTransform(scrollYProgress, (v)=>`${v*100}%`)
                     />
                   </div>
 
-                  {/* ITEMS */}
+                  
                   <div className="relative flex flex-col gap-10 mt-6 pb-28">
                     {exprience.map((exp, idx) => (
                       <ExprienceItem
